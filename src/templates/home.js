@@ -8,7 +8,6 @@ import {getPages, Link, safePrefix} from '../utils';
 export default class Home extends React.Component {
     render() {
         let display_posts = _.orderBy(getPages(this.props.pageContext.pages, '/posts'), 'frontmatter.date', 'desc');
-        moment.locale('fr')
         return (
             <Layout {...this.props}>
               {_.map(_.get(this.props, 'pageContext.frontmatter.sections'), (section, section_idx) => {
@@ -30,7 +29,7 @@ export default class Home extends React.Component {
                       <header className="post-header">
                         <div className="post-meta">
                           <time className="published"
-                          dateTime={moment(_.get(post, 'frontmatter.date')).strftime('%Y-%m-%d %H:%M')}>{moment(_.get(post, 'frontmatter.date')).strftime('%B %d, %Y')}</time>
+                          dateTime={moment(_.get(post, 'frontmatter.date')).strftime('%Y-%m-%d %H:%M')}>{moment(_.get(post, 'frontmatter.date')).locale('fr').strftime('%B %d, %Y')}</time>
                         </div>
                         <h2 className="post-title"><Link to={safePrefix(_.get(post, 'url'))} rel="bookmark">{_.get(post, 'frontmatter.title')}</Link></h2>
                       </header>
