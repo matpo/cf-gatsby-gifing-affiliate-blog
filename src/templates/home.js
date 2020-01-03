@@ -8,6 +8,7 @@ import {getPages, Link, safePrefix} from '../utils';
 export default class Home extends React.Component {
     render() {
         let display_posts = _.orderBy(getPages(this.props.pageContext.pages, '/posts'), 'frontmatter.date', 'desc');
+        moment.locale('fr')
         return (
             <Layout {...this.props}>
               {_.map(_.get(this.props, 'pageContext.frontmatter.sections'), (section, section_idx) => {
@@ -36,7 +37,7 @@ export default class Home extends React.Component {
                       <div className="post-excerpt">
                         <p>{_.get(post, 'frontmatter.excerpt')}</p>
                         <p className="read-more">
-                          <Link className="button inverse" to={safePrefix(_.get(post, 'url'))}>Read more</Link>
+                          <Link className="button inverse" to={safePrefix(_.get(post, 'url'))}>Lire plus</Link>
                         </p>
                       </div>
                     </div>
